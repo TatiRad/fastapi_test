@@ -52,6 +52,7 @@ html = """
 
 @app.get("/")
 async def get():
+
     return HTMLResponse(html)
 
 
@@ -62,5 +63,5 @@ async def websocket_endpoint(websocket: WebSocket):
     while True:
         data = await websocket.receive_json()
         print(data)
-        await websocket.send_text(f"{num}. {data}")
+        await websocket.send_json(f"{num}. {data}")
         num +=1
